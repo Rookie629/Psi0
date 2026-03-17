@@ -4,7 +4,7 @@
 
 ```
 python scripts/data/download.py \
---repo-id=songlinwei/hfm-models \
+--repo-id=USC-PSI-Lab/psi-data-models \
 --remote-dir=openpi/pi05_droid.nebula101 \
 --repo-type=model \
 --local-dir=/data1/hfm/cache/checkpoints/
@@ -157,7 +157,7 @@ bash scripts/train/openpi/benchmark_pi05_nv_slurm.sh \
 #export task=Pick_toys_into_box_and_lift_and_turn_and_put_on_the_chair_new_target_yaw
 export task=Pull_the_tray_out_of_chips_can_and_throw_the_can_into_trash_bin
 export step=40000
-hf upload songlinwei/hfm-models \
+hf upload USC-PSI-Lab/psi-data-models \
 	.runs/openpi-05/$task/$task/$step/model.safetensors \
 	benchmarks/openpi-05/$task/$step/model.safetensors \
 	--repo-type=model
@@ -170,7 +170,7 @@ Download:
 export task=Remove_the_cap_turn_on_the_faucet_and_fill_the_bottle_with_water
 export step=40000
 python scripts/data/download.py \
-	--repo-id=songlinwei/hfm-models \
+	--repo-id=USC-PSI-Lab/psi-data-models \
 	--remote-dir=benchmarks/openpi-05/$task/$step \
 	--repo-type=model \
 	--local-dir=.runs/openpi-05/$task/$task/$step
