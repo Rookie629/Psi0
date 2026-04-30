@@ -582,7 +582,9 @@ class LeRobotSingleDataset(Dataset):
         else:
             chunk_index = self.get_episode_chunk(trajectory_id)
             parquet_path = self.dataset_path / self.data_path_pattern.format(
-                episode_chunk=chunk_index, episode_index=trajectory_id
+                episode_chunk=chunk_index,
+                chunk_index=chunk_index,
+                episode_index=trajectory_id,
             )
             assert parquet_path.exists(), f"Parquet file not found at {parquet_path}"
             return pd.read_parquet(parquet_path)
@@ -661,7 +663,10 @@ class LeRobotSingleDataset(Dataset):
         if original_key is None:
             original_key = key
         video_filename = self.video_path_pattern.format(
-            episode_chunk=chunk_index, episode_index=trajectory_id, video_key=original_key
+            episode_chunk=chunk_index,
+            chunk_index=chunk_index,
+            episode_index=trajectory_id,
+            video_key=original_key,
         )
         return self.dataset_path / video_filename
 
