@@ -10,6 +10,7 @@ wheels/
 .venv*
 
 /data/
+datasets/
 cache
 *.mp4
 ml-egodex_dataset/ # soft link to the egodex dataset
@@ -17,6 +18,7 @@ wandb/
 runs/
 checkpoints/
 log/
+logs/
 playgrounds/
 TODO.md
 *.zip
@@ -49,6 +51,7 @@ src/fast/pi
 #uv.lock
 .vscode/
 .direnv/
+.codex
 third_party/
 src/gr00t/.venv/
 props/
