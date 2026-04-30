@@ -203,6 +203,10 @@ def main() -> int:
 
     for key, value in preset.get("env", {}).items():
         env[str(key)] = str(value)
+    if launcher == "launch_finetune" and launcher_args.get("dataset_path"):
+        # Modality config modules read DATASET_PATH at import time. Keep it in sync
+        # with command-line dataset overrides so validation uses the actual dataset.
+        env["DATASET_PATH"] = str(launcher_args["dataset_path"])
 
     cmd = [
         str(GR00T_PYTHON),

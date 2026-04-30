@@ -27,12 +27,15 @@ def load_modality_config(modality_config_path: str):
 
 
 def load_checkpoint_model_config(base_model_path: str) -> dict:
-    """Load the saved model config from a local GR00T checkpoint directory."""
+    """Load the saved model config from a local or Hugging Face GR00T checkpoint."""
     config_path = Path(base_model_path) / "config.json"
-    if not config_path.exists():
-        raise FileNotFoundError(f"Missing checkpoint config: {config_path}")
-    with config_path.open("r") as f:
-        return json.load(f)
+    if config_path.exists():
+        with config_path.open("r") as f:
+            return json.load(f)
+
+    from transformers import AutoConfig
+
+    return AutoConfig.from_pretrained(base_model_path, trust_remote_code=True).to_dict()
 
 
 if __name__ == "__main__":
