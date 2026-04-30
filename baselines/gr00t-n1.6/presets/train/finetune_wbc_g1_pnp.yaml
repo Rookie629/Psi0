@@ -1,0 +1,21 @@
+extends: _common_finetune.yaml
+runtime:
+  cuda_visible_devices: "0"
+  master_port: 29531
+model:
+  base_model_path: nvidia/GR00T-N1.6-3B
+dataset:
+  path: /home/yangke/KY/Psi0/datasets/wbc_g1_pnp_no_ep0
+  embodiment_tag: NEW_EMBODIMENT
+  modality_config_path: src/gr00t/gr00t/configs/modality/g1_wbc_vla.py
+training:
+  num_gpus: 1
+  output_dir: ./checkpoints/finetune_wbc_g1_pnp_gr00t
+  global_batch_size: 8
+  max_steps: 10000
+  save_steps: 1000
+env:
+  DATASET_PATH: /home/yangke/KY/Psi0/datasets/wbc_g1_pnp_no_ep0
+  ACTION_HORIZON: "16"
+extra_args:
+  use_wandb: false
